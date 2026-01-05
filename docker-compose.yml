@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  mediamtx:
+    image: bluenviron/mediamtx:latest
+    container_name: mediamtx
+    ports:
+      - "8554:8554"
+    command: ["mediamtx"]
+
+  onvif-ip-camera-mock:
+    build: .
+    container_name: onvif-ip-camera-mock
+    depends_on:
+      - mediamtx
+    environment:
+      RTSP_URL: rtsp://mediamtx:8554/cam1
+    restart: unless-stopped
