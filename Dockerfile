@@ -1,3 +1,6 @@
+# ============================
+# Build
+# ============================
 FROM rust:latest AS builder
 
 RUN apt-get update && \
@@ -10,14 +13,14 @@ RUN apt-get update && \
 WORKDIR /app
 
 COPY Cargo.toml Cargo.lock ./
-RUN mkdir src && echo "fn main() {}" > src/main.rs
-RUN cargo build --release
-
 COPY src ./src
 COPY assets ./assets
 
 RUN cargo build --release
 
+# ============================
+# Runtime
+# ============================
 FROM debian:bookworm-slim
 
 RUN apt-get update && \
@@ -29,7 +32,6 @@ RUN apt-get update && \
 WORKDIR /app
 
 COPY --from=builder /app/target/release/onvif-ip-camera-mock /app/onvif-ip-camera-mock
-
 COPY assets ./assets
 
 ENV RUST_LOG=info
