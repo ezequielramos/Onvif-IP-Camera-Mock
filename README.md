@@ -28,7 +28,7 @@ The project dynamically generates video frames (DVD-style bouncing animation wit
 
 ## 🚀 Running with Docker Compose (Recommended)
 
-The repository includes a ready-to-use [docker-compose.yml](``) that starts both the RTSP server and the camera simulator.
+The repository includes a ready-to-use [docker-compose.yml](docker-compose.yml) that starts both the RTSP server and the camera simulator.
 
 ```yaml
 version: "3.9"
@@ -71,11 +71,13 @@ _Of course you can use your favorite player to watch it, like VLC or whatever...
 
 ### Local Build (Optional)
 
-Change the docker-compose.yml file to
+Change those lines of [docker-compose.yml](docker-compose.yml) file to:
 
 ```yaml
 onvif-ip-camera-mock:
   build: .
+  container_name: onvif-ip-camera-mock
+  # image: ezequielmr94/onvif-ip-camera-mock
 ```
 
 Or use
