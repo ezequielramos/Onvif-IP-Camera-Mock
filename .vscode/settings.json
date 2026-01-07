@@ -6,6 +6,7 @@
         "ffplay",
         "imageproc",
         "mediamtx",
-        "Onvif"
+        "Onvif",
+        "serde"
     ]
 }
