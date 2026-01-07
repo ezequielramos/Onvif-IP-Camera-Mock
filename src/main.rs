@@ -1,5 +1,6 @@
 mod circle;
 mod ffmpeg;
+mod onvif;
 mod render;
 
 use ab_glyph::FontArc;
@@ -15,6 +16,10 @@ async fn main() {
     let fps = 15;
 
     let rtsp_url = std::env::var("RTSP_URL").unwrap_or("rtsp://127.0.0.1:8554/cam1".into());
+
+    tokio::spawn(async move {
+        onvif::start_http_server().await;
+    });
 
     run_stream_supervisor(rtsp_url, width, height, fps).await;
 }

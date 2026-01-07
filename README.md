@@ -46,6 +46,8 @@ services:
       - mediamtx
     environment:
       RTSP_URL: rtsp://mediamtx:8554/cam1
+    ports:
+      - "8000:8000"
     restart: always
 ```
 
