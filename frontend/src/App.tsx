@@ -40,7 +40,7 @@ function App() {
         {currentPage === 'liveView' &&
           <>
             {hls &&
-              <CameraPlayer src="http://localhost:8888/cam1/index.m3u8" />
+              <CameraPlayer src={hls} />
             }
             <PTZControls />
           </>
